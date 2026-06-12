@@ -1,0 +1,17 @@
+{
+  "_comment": "EXAMPLE Cyberattacks Agent view payload. Replace this entire file with the JSON request body captured from your own saved Cyberattacks Agent view (see README, 'Exporting your Agent view JSON'). The script sends this object to POST /v3/ml/relationships/cyber-attacks/dashboard/table verbatim. Remove this _comment key or leave it -- Feedly ignores unknown keys.",
+  "period": {
+    "type": "Last7Days",
+    "label": "Last7Days"
+  },
+  "layers": [
+    {
+      "filters": [
+        {
+          "field": "attackType",
+          "value": "Ransomware"
+        }
+      ]
+    }
+  ]
+}

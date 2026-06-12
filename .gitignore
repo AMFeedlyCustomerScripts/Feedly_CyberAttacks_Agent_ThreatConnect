@@ -1,0 +1,20 @@
+# Credentials and local configuration
+.env
+config.yaml
+
+# Customer-specific saved Agent view (keep the .template in git)
+cyber_attacks_agent_view.json
+
+# Runtime artifacts
+feedly_tc_cyberattacks_state.json
+*.log
+records.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store

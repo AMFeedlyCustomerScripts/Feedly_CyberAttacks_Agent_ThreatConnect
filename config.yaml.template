@@ -1,0 +1,70 @@
+# =============================================================================
+# Feedly Agents -> ThreatConnect Integration Configuration
+#
+# Copy to config.yaml and edit. Both scripts read this file (they share the
+# same structure); CLI flags always take precedence over values set here.
+# Credentials are better kept in environment variables or .env -- only put
+# them here if this file is access-controlled.
+# =============================================================================
+
+feedly:
+  # api_key: "YOUR_FEEDLY_ENTERPRISE_API_TOKEN"   # prefer FEEDLY_API_KEY env var
+
+  # Path to the saved Agent view JSON payload. The customer owns this file:
+  # update it anytime the Agent configuration changes in Feedly -- it is
+  # re-read at the start of every sync cycle, even in daemon mode.
+  # agent_view: "vuln_agent_view.json"            # vulnerability script
+  # agent_view: "cyber_attacks_agent_view.json"   # cyberattacks script
+
+  # Maximum records pulled per sync cycle
+  max_results: 500
+
+threatconnect:
+  # url: "https://app.threatconnect.com"          # prefer TC_API_URL env var
+  # owner: "My Organization"                      # prefer TC_OWNER env var
+
+  # Authentication -- either HMAC pair or API token (prefer env vars / .env):
+  # access_id: "YOUR_ACCESS_ID"                   # TC_ACCESS_ID
+  # secret_key: "YOUR_SECRET_KEY"                 # TC_SECRET_KEY
+  # api_token: "YOUR_API_TOKEN"                   # TC_API_TOKEN
+
+  # Attempt structured custom attributes (EPSS Score, CVSS Vector, Attack
+  # Type, Victim Country, ...). The attribute TYPES must exist in your
+  # ThreatConnect owner for the relevant group type; rejected attributes are
+  # logged and skipped, and all data is always embedded in the Description
+  # attribute regardless.
+  custom_attributes: true
+
+  # Remap field -> ThreatConnect attribute type name if your owner uses
+  # different attribute type names than the defaults below.
+  attribute_mapping: {}
+  #   Vulnerability script fields:
+  #   cvss_score:          "CVSS Score"
+  #   cvss_vector:         "CVSS Vector"
+  #   epss_score:          "EPSS Score"
+  #   exploitation_status: "Exploitation Status"
+  #   patch_details:       "Patch Details"
+  #   affected_products:   "Affected Products"
+  #
+  #   Cyberattacks script fields:
+  #   attack_type:         "Attack Type"
+  #   victim_org:          "Victim Organization"
+  #   victim_country:      "Victim Country"
+  #   victim_industry:     "Victim Industry"
+  #   timeline:            "Attack Timeline"
+
+  # Extra tags applied to every created/updated group
+  extra_tags: []
+  #   - "Feedly Agent Sync"
+
+  # Cyberattacks script only: create associated Adversary/Malware groups
+  associations: true
+
+  # Skip records that already exist in ThreatConnect instead of updating them
+  skip_existing: false
+
+sync:
+  # Run continuously (same as --daemon)
+  daemon: false
+  # Minutes between sync cycles in daemon mode
+  interval: 60
