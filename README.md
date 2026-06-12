@@ -8,10 +8,7 @@ Vulnerability Groups — via the v3 REST API.
 Companion integration: [Feedly Vulnerability Agent → ThreatConnect](https://github.com/AMFeedlyCustomerScripts/Feedly_Vulnerability_Agent_ThreatConnect)
 (incidents associate to its Vulnerability Groups via shared CVE names).
 
-## Why a script (and not the ThreatConnect Feedly app)?
-
-The no-code ThreatConnect Feedly Intelligence Engine app is **stream-ID based**
-and can only ingest Team Feed folders. The Cyberattacks Agent is a dashboard
+The Cyberattacks Agent is a dashboard
 product served by a POST endpoint
 (`/v3/ml/relationships/cyber-attacks/dashboard/table`), not a stream, so the
 app cannot reach it. This script ingests the Agent's structured intelligence
